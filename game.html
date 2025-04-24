@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Jayne Wadsworth's Dino Game" />
+    <meta name="author" content="Jayne Wadsworth" />
+    <title>Jayne's Dino Game</title>
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <link href="css/game.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="index.html">Jayne Wadsworth</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto py-4 py-lg-0">
+                    <a class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="index.html">Home</a>
+                    <a class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="scratch.html">scratch page</a>
+                    <a class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="game.html">game</a>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Game Container -->
+    <div class="container">
+        <h1>Jayne's Dino Game</h1>
+        <p>Press space to jump! Avoid the cacti.</p>
+        <canvas id="gameCanvas" width="800" height="200"></canvas>
+        <button id="restartBtn" style="display:none; padding: 10px 20px; font-size: 16px; margin-top: 20px;">Restart Game</button>
+    </div>
+
+    <!-- JavaScript Dino Game -->
+    <script>
+        const canvas = document.getElementById("gameCanvas");
+        const ctx = canvas.getContext("2d");
+        const restartBtn = document.getElementById("restartBtn");
+
+        let dino, cactus, score, animationId;
+
+        function initGame() {
+            dino = { x: 50, y: 150, width: 40, height: 40, dy: 0, gravity: 1.5, jumping: false };
+            cactus = { x: 800, y: 160, width: 20, height: 40 };
+            score = 0;
+            restartBtn.style.display = "none";
+            update();
+        }
+
+        function drawDino() {
+            ctx.fillStyle = "green";
+            ctx.fillRect(dino.x, dino.y, dino.width, dino.height);
+        }
+
+        function drawCactus() {
+            ctx.fillStyle = "red";
+            ctx.fillRect(cactus.x, cactus.y, cactus.width, cactus.height);
+        }
+
+        function update() {
+            animationId = requestAnimationFrame(update);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawDino();
+            drawCactus();
+            cactus.x -= 6;
+
+            if (cactus.x + cactus.width < 0) {
+                cactus.x = canvas.width + Math.random() * 100;
+                score++;
+            }
+
+            if (dino.jumping) {
+                dino.dy += dino.gravity;
+                dino.y += dino.dy;
+                if (dino.y >= 150) {
+                    dino.y = 150;
+                    dino.dy = 0;
+                    dino.jumping = false;
+                }
+            }
+
+            // Collision detection
+            if (
+                dino.x < cactus.x + cactus.width &&
+                dino.x + dino.width > cactus.x &&
+                dino.y < cactus.y + cactus.height &&
+                dino.y + dino.height > cactus.y
+            ) {
+                cancelAnimationFrame(animationId);
+                ctx.fillStyle = "black";
+                ctx.fillText("Game Over! Score: " + score, 300, 100);
+                restartBtn.style.display = "inline-block";
+            }
+
+            ctx.fillStyle = "black";
+            ctx.fillText("Score: " + score, 10, 20);
+        }
+
+        document.addEventListener("keydown", function (e) {
+            if (e.code === "Space" && !dino.jumping && restartBtn.style.display === "none") {
+                dino.dy = -20;
+                dino.jumping = true;
+            }
+        });
+
+        restartBtn.addEventListener("click", function () {
+            initGame();
+        });
+
+        initGame();
+    </script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Serving in Uruguay - Mission Prep</title>
+  <link href="css/scratch.css" rel="stylesheet" />
+  <style>
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 60vh;
+      overflow: hidden;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .hero-text {
+      position: absolute;
+      z-index: 2;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      font-weight: bold;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 1rem 2rem;
+      border-radius: 12px;
+    }
+
+    .nav {
+      background-color: #f0f0f0;
+      padding: 1em;
+      text-align: center;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #0077cc;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Image with Title -->
+  <div class="hero">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Montevideo_Skyline.jpg" alt="Montevideo Skyline">
+    <div class="hero-text">Those who are serving their mission to Uruguay — this is for you!</div>
+  </div>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <a href="index.html">Back to Professional Site</a>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <h2>Called to Serve in Uruguay</h2>
+    <p>Mission Prep & Insights for Future Missionaries</p>
+  </div>
+
+  <!-- Anchor Link Section -->
+  <div class="toc">
+    <h2>Quick Navigation</h2>
+    <ul>
+      <li><a href="#food">🍽️ Food in Uruguay</a></li>
+      <li><a href="#weather">☀️ Weather</a></li>
+      <li><a href="#packing">🎒 What to Pack</a></li>
+      <li><a href="#tips">📘 Mission Tips</a></li>
+    </ul>
+  </div>
+
+  <!-- Packing Section -->
+  <div id="packing" class="content-section">
+    <h2>🎒 What to Pack for Uruguay</h2>
+    <ol>
+      <li>
+        <strong>Essentials:</strong>
+        <ul>
+          <li>Rain jacket</li>
+          <li>Durable shoes</li>
+          <li>Light sweaters for windy days</li>
+        </ul>
+      </li>
+      <li><strong>Spanish Scriptures</strong></li>
+      <li><strong>Comfortable proselyting clothes</strong></li>
+    </ol>
+  </div>
+
+  <!-- Food Section -->
+  <div id="food" class="content-section">
+    <h2>🍽️ Food in Uruguay</h2>
+    <p>Uruguay has a rich food culture! Here are a few foods you'll love:</p>
+    <ul>
+      <li><strong>Chivito:</strong> A steak sandwich with everything</li>
+      <li><strong>Empanadas:</strong> Stuffed pastries with meat or cheese</li>
+      <li><strong>Alfajores:</strong> Dulce de leche cookies</li>
+    </ul>
+  </div>
+
+  <!-- Weather Section -->
+  <div id="weather" class="content-section">
+    <h2>☀️ Weather</h2>
+    <p>Uruguay has four seasons but is generally mild:</p>
+    <ul>
+      <li>Summer: December to February, warm and humid</li>
+      <li>Winter: June to August, chilly but not extreme</li>
+      <li>Expect wind all year, especially in Montevideo</li>
+    </ul>
+  </div>
+
+  <!-- Mission Tips Section -->
+  <div id="tips" class="content-section">
+    <h2>📘 Mission Tips</h2>
+    <p>Some helpful things for those preparing to serve in Uruguay:</p>
+    <ul>
+      <li>Practice understanding Uruguayan Spanish (they say "vos")</li>
+      <li>Bring extra garments—they may be hard to replace</li>
+      <li>Pack bug spray and sunscreen!</li>
+    </ul>
+  </div>
+
+  <!-- Embedded Tableau Viz -->
+  <div class="content-section">
+    <h2>📊 Uruguay by the Numbers</h2>
+    <div class="tableauPlaceholder" id="vizContainer" style="width: 100%; height: 600px;"></div>
+
+    <!-- Tableau JS Library -->
+    <script type="text/javascript" src="https://public.tableau.com/javascripts/api/tableau-2.min.js"></script>
+
+    <!-- Viz Embed Script -->
+    <script type="text/javascript">
+      window.addEventListener('DOMContentLoaded', function () {
+        var containerDiv = document.getElementById("vizContainer");
+
+        // Replace with your public Tableau link when ready
+        var url = "https://public.tableau.com/views/RegionalSampleWorkbook/Storms";
+
+        var options = {
+          width: "100%",
+          height: "600px",
+          hideTabs: true,
+          hideToolbar: true
+        };
+
+        new tableau.Viz(containerDiv, url, options);
+      });
+    </script>
+  </div>
+</body>
+</html>
